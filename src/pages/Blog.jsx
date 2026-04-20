@@ -47,7 +47,7 @@ export default function Blog() {
   }, [selectedPost]);
 
   return (
-    <div className={darkMode ? "min-h-screen bg-slate-950 text-slate-100" : "min-h-screen bg-white text-slate-900"}>
+    <div className={darkMode ? "min-h-screen flex flex-col bg-slate-950 text-slate-100" : "min-h-screen flex flex-col bg-white text-slate-900"}>
       <header className={darkMode ? "border-b border-slate-800 bg-slate-950/90 backdrop-blur" : "border-b border-slate-200 bg-white/90 backdrop-blur"}>
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ export default function Blog() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-14">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-14">
         <div className="max-w-3xl">
           <p className={darkMode ? "text-xs font-semibold uppercase tracking-[0.35em] text-slate-500" : "text-xs font-semibold uppercase tracking-[0.35em] text-slate-400"}>
             The Thinking Archive

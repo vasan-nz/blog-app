@@ -5,8 +5,8 @@ export default function Footer({ darkMode = false }) {
     <footer
       className={
         darkMode
-          ? "mt-20 border-t border-slate-800 bg-slate-950"
-          : "mt-20 border-t border-slate-200 bg-slate-50"
+          ? "border-t border-slate-800 bg-slate-950"
+          : "border-t border-slate-200 bg-slate-50"
       }
     >
       <div className="mx-auto max-w-6xl px-6 py-12">
