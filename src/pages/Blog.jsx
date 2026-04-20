@@ -34,7 +34,9 @@ export default function Blog() {
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e) => { if (e.key === "Escape") setSelectedPost(null); };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setSelectedPost(null);
+    };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
@@ -129,15 +131,15 @@ export default function Blog() {
         {totalPages > 1 && (
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <button
-              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className={darkMode ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40" : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
             >
               Previous
             </button>
 
-            {Array.from({ length: totalPages }, (_, i) => {
-              const page = i + 1;
+            {Array.from({ length: totalPages }, (_, index) => {
+              const page = index + 1;
               const isActive = currentPage === page;
               return (
                 <button
@@ -159,7 +161,7 @@ export default function Blog() {
             })}
 
             <button
-              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
               className={darkMode ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40" : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
             >
