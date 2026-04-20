@@ -46,30 +46,40 @@ export default function Blog() {
     return () => { document.body.style.overflow = ""; };
   }, [selectedPost]);
 
+  const dm = darkMode;
+
   return (
-    <div className={darkMode ? "min-h-screen flex flex-col bg-slate-950 text-slate-100" : "min-h-screen flex flex-col bg-white text-slate-900"}>
-      <header className={darkMode ? "border-b border-slate-800 bg-slate-950/90 backdrop-blur" : "border-b border-slate-200 bg-white/90 backdrop-blur"}>
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+    <div className={dm ? "min-h-screen flex flex-col bg-slate-950 text-slate-100" : "min-h-screen flex flex-col bg-slate-50 text-slate-900"}>
+
+      <header className={dm
+        ? "sticky top-0 z-10 border-b border-slate-800 bg-slate-950/90 backdrop-blur-md shadow-sm"
+        : "sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm"
+      }>
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <BookOpen className={darkMode ? "h-5 w-5 text-slate-200" : "h-5 w-5 text-slate-800"} />
-            <h1 className={darkMode ? "text-lg font-semibold tracking-tight text-slate-100" : "text-lg font-semibold tracking-tight text-slate-900"}>
+            <BookOpen className={dm ? "h-5 w-5 text-slate-300" : "h-5 w-5 text-slate-700"} />
+            <h1 className={dm ? "text-lg font-semibold tracking-tight text-slate-100" : "text-lg font-semibold tracking-tight text-slate-900"}>
               The Thinking Archive
             </h1>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={darkMode ? "inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800" : "inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"}
+              onClick={() => setDarkMode(!dm)}
+              className={dm
+                ? "inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800"
+                : "inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100"}
               aria-label="Toggle dark mode"
             >
-              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              {darkMode ? "Light" : "Dark"}
+              {dm ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {dm ? "Light" : "Dark"}
             </button>
 
             <a
               href="https://manickavasan.com"
-              className={darkMode ? "inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800" : "inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"}
+              className={dm
+                ? "inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800"
+                : "inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100"}
             >
               <ArrowLeft className="h-4 w-4" />
               Home
@@ -78,62 +88,79 @@ export default function Blog() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-14">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
+
+        {/* Hero */}
         <div className="max-w-3xl">
-          <p className={darkMode ? "text-xs font-semibold uppercase tracking-[0.35em] text-slate-500" : "text-xs font-semibold uppercase tracking-[0.35em] text-slate-400"}>
+          <p className={dm ? "text-xs font-semibold uppercase tracking-[0.35em] text-slate-500" : "text-xs font-semibold uppercase tracking-[0.35em] text-slate-400"}>
             The Thinking Archive
           </p>
-          <h2 className={darkMode ? "mt-1 text-2xl font-bold tracking-tight text-slate-200 sm:text-2xl" : "mt-1 text-2xl font-bold tracking-tight text-slate-700 sm:text-2xl"}>
+          <h2 className={dm ? "mt-2 text-3xl font-bold tracking-tight text-slate-100" : "mt-2 text-3xl font-bold tracking-tight text-slate-800"}>
             Ideas worth keeping. Experiences worth writing.
           </h2>
-          <p className={darkMode ? "mt-3 max-w-2xl text-lg leading-6 text-slate-400" : "mt-3 max-w-2xl text-lg leading-6 text-slate-500"}>
+          <p className={dm ? "mt-3 max-w-2xl text-base leading-7 text-slate-400" : "mt-3 max-w-2xl text-base leading-7 text-slate-500"}>
             A personal collection of reflections, travel notes, learning moments, and thoughts that stay with me.
           </p>
         </div>
 
-        <div className="mt-10">
+        {/* Search */}
+        <div className="mt-8">
           <div className="relative max-w-xl">
-            <Search className={darkMode ? "pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" : "pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"} />
+            <Search className={dm
+              ? "pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
+              : "pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"} />
             <input
               type="text"
               placeholder="Search blogs by title, content, or date..."
               value={searchTerm}
               onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-              className={darkMode ? "w-full rounded-2xl border border-slate-700 bg-slate-900 py-3 pl-11 pr-4 text-sm text-slate-100 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-800" : "w-full rounded-2xl border border-slate-300 bg-white py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"}
+              className={dm
+                ? "w-full rounded-2xl border border-slate-700 bg-slate-900 py-3 pl-11 pr-4 text-sm text-slate-100 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
+                : "w-full rounded-2xl border border-slate-300 bg-white py-3 pl-11 pr-4 text-sm text-slate-800 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"}
             />
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6">
+        {/* Post list */}
+        <div className="mt-10 grid gap-5">
           {paginatedPosts.length > 0 ? (
             paginatedPosts.map((post) => (
               <article
                 key={post.id}
                 onClick={() => setSelectedPost(post)}
-                className={darkMode ? "cursor-pointer rounded-3xl border border-slate-800 bg-slate-900 p-6 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20" : "cursor-pointer rounded-3xl border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:shadow-lg"}
+                className={dm
+                  ? "cursor-pointer rounded-2xl border border-slate-800 bg-slate-900 p-7 transition hover:-translate-y-0.5 hover:border-slate-700 hover:shadow-xl hover:shadow-black/30"
+                  : "cursor-pointer rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"}
               >
-                <p className={darkMode ? "text-sm text-slate-400" : "text-sm text-slate-500"}>{post.date}</p>
-                <h3 className={darkMode ? "mt-2 text-2xl font-semibold text-slate-100" : "mt-2 text-2xl font-semibold text-slate-900"}>{post.title}</h3>
-                <p className={darkMode ? "mt-3 leading-7 text-slate-400" : "mt-3 leading-7 text-slate-600"}>{post.excerpt}</p>
-                <div className={darkMode ? "mt-5 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-900" : "mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white"}>
+                <p className={dm ? "text-sm text-slate-400" : "text-sm text-slate-500"}>{post.date}</p>
+                <h3 className={dm ? "mt-2 text-xl font-semibold text-slate-100" : "mt-2 text-xl font-semibold text-slate-900"}>{post.title}</h3>
+                <p className={dm ? "mt-2 text-sm leading-7 text-slate-400" : "mt-2 text-sm leading-7 text-slate-600"}>{post.excerpt}</p>
+                <div className={dm
+                  ? "mt-5 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-slate-200 ring-1 ring-white/10 transition hover:bg-white/15"
+                  : "mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"}>
                   Read blog
                 </div>
               </article>
             ))
           ) : (
-            <div className={darkMode ? "rounded-3xl border border-slate-800 bg-slate-900 p-8 text-center" : "rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center"}>
-              <h3 className={darkMode ? "text-xl font-semibold text-slate-100" : "text-xl font-semibold text-slate-800"}>No blogs found</h3>
-              <p className={darkMode ? "mt-2 text-slate-400" : "mt-2 text-slate-600"}>Try a different keyword for your search.</p>
+            <div className={dm
+              ? "rounded-2xl border border-slate-800 bg-slate-900 p-10 text-center"
+              : "rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm"}>
+              <h3 className={dm ? "text-lg font-semibold text-slate-100" : "text-lg font-semibold text-slate-800"}>No blogs found</h3>
+              <p className={dm ? "mt-2 text-sm text-slate-400" : "mt-2 text-sm text-slate-500"}>Try a different keyword for your search.</p>
             </div>
           )}
         </div>
 
+        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={darkMode ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40" : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
+              className={dm
+                ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
+                : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
             >
               Previous
             </button>
@@ -147,11 +174,11 @@ export default function Blog() {
                   onClick={() => setCurrentPage(page)}
                   className={
                     isActive
-                      ? darkMode
-                        ? "rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-900"
+                      ? dm
+                        ? "rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-900"
                         : "rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white"
-                      : darkMode
-                      ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800"
+                      : dm
+                      ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800"
                       : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
                   }
                 >
@@ -163,7 +190,9 @@ export default function Blog() {
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className={darkMode ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40" : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
+              className={dm
+                ? "rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
+                : "rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"}
             >
               Next
             </button>
@@ -171,25 +200,33 @@ export default function Blog() {
         )}
       </main>
 
+      {/* Post modal */}
       {selectedPost && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 sm:p-6">
-          <div className={darkMode ? "relative flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-slate-900 shadow-2xl" : "relative flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"}>
-            <div className={darkMode ? "flex items-start justify-between border-b border-slate-800 px-6 py-5" : "flex items-start justify-between border-b border-slate-200 px-6 py-5"}>
+          <div className={dm
+            ? "relative flex h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-white/10"
+            : "relative flex h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"}>
+
+            <div className={dm
+              ? "flex items-start justify-between border-b border-slate-800 px-7 py-5"
+              : "flex items-start justify-between border-b border-slate-200 px-7 py-5"}>
               <div className="pr-4">
-                <p className={darkMode ? "text-sm text-slate-400" : "text-sm text-slate-500"}>{selectedPost.date}</p>
-                <h3 className={darkMode ? "mt-1 text-2xl font-bold text-slate-100" : "mt-1 text-2xl font-bold text-slate-900"}>{selectedPost.title}</h3>
+                <p className={dm ? "text-sm text-slate-400" : "text-sm text-slate-500"}>{selectedPost.date}</p>
+                <h3 className={dm ? "mt-1 text-2xl font-bold text-slate-100" : "mt-1 text-2xl font-bold text-slate-900"}>{selectedPost.title}</h3>
               </div>
               <button
                 onClick={() => setSelectedPost(null)}
-                className={darkMode ? "rounded-full border border-slate-700 p-2 text-slate-300 transition hover:bg-slate-800" : "rounded-full border border-slate-300 p-2 text-slate-600 transition hover:bg-slate-100"}
-                aria-label="Close blog"
+                className={dm
+                  ? "rounded-full border border-slate-700 p-2 text-slate-400 transition hover:bg-slate-800 hover:text-slate-200"
+                  : "rounded-full border border-slate-200 p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"}
+                aria-label="Close"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="overflow-y-auto px-6 py-6">
-              <div className={darkMode ? "space-y-5 text-lg leading-8 text-slate-300" : "space-y-5 text-lg leading-8 text-slate-700"}>
+            <div className="overflow-y-auto px-7 py-7">
+              <div className={dm ? "space-y-5 text-base leading-8 text-slate-300" : "space-y-5 text-base leading-8 text-slate-700"}>
                 {selectedPost.content.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
@@ -199,7 +236,7 @@ export default function Blog() {
         </div>
       )}
 
-      <Footer darkMode={darkMode} />
+      <Footer darkMode={dm} />
     </div>
   );
 }
